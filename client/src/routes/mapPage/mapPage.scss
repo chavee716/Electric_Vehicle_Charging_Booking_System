@@ -1,0 +1,24 @@
+.map {
+    position: absolute; // Change to absolute positioning
+    top: 80px; // Place it below a fixed-height navbar (adjust as per your navbar height)
+    left: 0; // Align to the left edge
+    right: 0; // Align to the right edge
+    bottom: 0; // Ensure it extends to the bottom
+
+    height: calc(100vh - 80px); // Full height minus the space for navbar (adjust as necessary)
+    width: 100vw; // Full viewport width
+
+    margin: 0; // Remove any default margin
+    padding: 0; // No padding for cleaner fit
+
+    border-radius: 15px; // Keep a modern subtle round corner effect
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); // Softer, elevated shadow effect
+
+    overflow: hidden; // Prevent overflow of the map container
+    
+    @media (max-width: 768px) {
+        border-radius: 0; // Remove rounding for smaller screens
+        top: 60px; // Adjust height for a smaller navbar
+        height: calc(100vh - 60px);
+    }
+}

@@ -1,0 +1,80 @@
+.about-us {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  
+  .main-section {
+    background-image: url('hero-background.jpg');  // Add a subtle background image
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    text-align: center;
+    color: #fff;
+    
+    .title {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .hero-description {
+      font-size: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+  }
+
+  .core-values {
+    background-color: #f4f4f4;
+    padding: 60px 20px;
+    text-align: center;
+
+    .subtitle {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+
+    .values-list {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      list-style-type: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 30px;
+        text-align: center;
+        width: 250px;
+
+        img {
+          width: 50px;
+          height: 50px;
+          margin-bottom: 20px;
+        }
+
+        strong {
+          display: block;
+          margin-bottom: 10px;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .global-reach {
+    padding: 60px 20px;
+    text-align: center;
+
+    .subtitle {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .description {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+  }
+}

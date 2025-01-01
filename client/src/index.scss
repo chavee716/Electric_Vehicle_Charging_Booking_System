@@ -1,0 +1,40 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none; /* Remove default underline */
+  color: inherit; /* Inherit color from parent */
+  transition: color 0.3s ease, text-shadow 0.3s ease; /* Smooth transition for color change */
+}
+
+a:hover {
+  color: #3BC449; /* Change link color on hover */
+  text-shadow: 0 1px 5px rgba(59, 196, 73, 0.5); /* Subtle shadow effect on hover */
+}
+
+body {
+  font-family: 'Roboto', sans-serif; /* Modern, clean font */
+  overflow: hidden; /* Hide overflow to prevent scrolling */
+  background-color: #f9f9f9; /* Light background color for better contrast */
+  color: #333; /* Dark text for readability */
+  line-height: 1.6; /* Improve line spacing for better readability */
+  padding: 20px; /* Add padding to avoid edges */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+/* Optional: Add styles for specific elements like headers and paragraphs */
+h1, h2, h3 {
+  margin-bottom: 15px; /* Space below headers */
+  font-weight: 700; /* Bold headers for emphasis */
+  color: #2c3e50; /* Darker color for headers */
+}
+
+p {
+  margin-bottom: 15px; /* Space below paragraphs */
+  color: #555; /* Softer color for body text */
+}
+
+

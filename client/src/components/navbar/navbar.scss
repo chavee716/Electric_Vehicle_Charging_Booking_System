@@ -1,0 +1,294 @@
+@import "../../responsive.scss";
+
+nav {
+  width: 100%; // Full width of the viewport
+  height: 80px; // Navbar height
+  margin-top: 5px; // Top margin
+  display: flex; // Flexbox layout
+  justify-content: space-between; // Space between items
+  align-items: center; // Center items vertically
+  position: fixed; // Fixed position at the top
+  top: 0; // Top alignment
+  left: 0; // Left alignment
+  z-index: 1000; // High z-index to stay on top
+  background-color: #ffffff; // White background
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+
+  a {
+    transition: all 0.4s ease; // Smooth transition for hover effects
+    font-size: 1.1rem; // Increased font size
+    font-weight: 500; // Slightly less bold for a modern look
+    color: #333; // Darker text color for better readability
+
+    @include sm {
+      display: none; // Responsive hide for small screens
+    }
+
+    &:hover {
+      color: #3BC449; // Change color on hover for a visual cue
+      transform: scale(1.05); // Scale effect on hover
+    }
+  }
+
+  .left {
+    margin-left: 100px; // Left margin for spacing
+    flex: 3; // Flex item takes up 3 parts of available space
+    display: flex; // Flexbox layout for children
+    align-items: center; // Center items vertically
+    gap: 38px; // Gap between items
+
+    .logo {
+      font-weight: bold; // Bold logo text
+      font-size: 22px; // Increased logo font size
+      display: flex; // Flexbox layout
+      align-items: center; // Center items vertically
+      gap: 10px; // Gap between logo text and image
+
+      img {
+        width: 175px; // Logo image width
+      }
+
+      span {
+        @include md {
+          display: none; // Hide on medium screens
+        }
+
+        @include sm {
+          display: initial; // Show on small screens
+        }
+      }
+    }
+  }
+
+  .user {
+    position: relative; // Position relative for dropdown
+  }
+  
+  .profilePic {
+    cursor: pointer; // Pointer cursor for profile picture
+    border-radius: 50%; // Circular profile picture
+    width: 40px; // Width of profile picture
+    height: 40px; // Height of profile picture
+  }
+  
+  .dropdownMenu {
+    position: absolute; // Position absolute for dropdown
+    top: 50px; // Position below the user element
+    right: 0; // Align to the right
+    background-color: white; // Background color
+    border-radius: 8px; // Rounded corners
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); // Shadow effect
+    padding: 10px; // Padding inside dropdown
+    z-index: 1000; // Ensure dropdown is above other elements
+  
+    .profileLink {
+      display: block; // Full width link
+      padding: 8px 16px; // Padding for links
+      color: #333; // Text color
+      text-decoration: none; // No underline
+      border-radius: 4px; // Rounded edges for hover
+      transition: background-color 0.2s; // Smooth transition
+  
+      &:hover {
+        background-color: #f0f0f0; // Light background on hover
+      }
+    }
+  }
+  
+  .logoutButton {
+    background-color: #ff5252; // Red color for logout button
+    color: white; // White text
+    border: none; // No border
+    margin-top: 10px; // Margin for spacing
+    border-radius: 4px; // Rounded edges
+    padding: 8px 16px; // Padding for button
+    cursor: pointer; // Pointer cursor
+    font-size: 0.9rem; // Font size
+    transition: background 0.3s ease; // Smooth background transition
+  
+    &:hover {
+      background-color: #ff3333; // Darker red on hover
+    }
+  }
+  
+
+  .right {
+    margin-right: 100px; // Right margin for spacing
+    display: flex; // Flexbox layout
+    align-items: center; // Center items vertically
+    height: 100%; // Full height
+
+    a {
+      padding: 12px 24px; // Padding for nav links
+      margin: 0 10px; // Margin for spacing
+      font-size: 1.1rem; // Increased font size for nav items
+      border-radius: 25px; // Rounded edges for nav links
+      background-color: transparent; // Background color
+      transition: background-color 0.3s ease; // Smooth transition for hover
+
+      &:hover {
+        background-color: rgba(59, 196, 73, 0.1); // Light green background on hover
+      }
+    }
+
+    .user {
+      display: flex; // Flexbox layout
+      align-items: center; // Center items vertically
+      font-weight: bold; // Bold user text
+
+      img {
+        width: 40px; // User image width
+        height: 40px; // User image height
+        border-radius: 50%; // Circular image
+        object-fit: cover; // Cover for image aspect ratio
+        margin-right: 20px; // Space between image and text
+      }
+
+      span {
+        @include sm {
+          display: none; // Hide on small screens
+        }
+      }
+
+      .profile {
+        padding: 10px 20px; // Slightly reduced padding for a more modern, minimal look
+        background-color: #4caf50; // Slightly muted color for a more modern tone
+        border-radius: 30px; // Softer, pill-shaped edges
+        cursor: pointer; // Pointer cursor
+        position: relative; // Positioning for notification
+        color: #ffffff; // White text for contrast
+      
+        // Added box shadow for depth
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+        
+        // Added hover and focus effects for better interactivity
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      
+        &:hover {
+          background-color: #45a049; // Darker shade on hover
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+      
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2); // Focus ring for accessibility
+        }
+      
+        .notification {
+          position: absolute; // Absolute positioning
+          top: -10px; // Slightly above the profile button
+          right: -10px; // Positioned to the right
+          background-color: #ff5252; // Modern, vivid red for notifications
+          color: #ffffff; // Notification text color
+          border-radius: 50%; // Circular notification
+          width: 24px; // Slightly reduced size for a more subtle look
+          height: 24px; // Same as width for consistency
+          display: flex; // Flexbox for centering
+          align-items: center; // Center text vertically
+          justify-content: center; // Center text horizontally
+          font-size: 0.75rem; // Smaller font for a modern look
+          font-weight: bold; // Bold text for visibility
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Shadow for depth
+        }
+      }
+      
+    }
+
+    .register {
+      border-radius: 25px; // Softer, rounded look
+      padding: 15px 30px; // Padding for spaciousness
+      text-align: center; // Centered text
+      color: #ffffff; // White text color
+      background: linear-gradient(135deg, #3BC449, #32a852); // Gradient background
+      font-size: 16px; // Larger font size for readability
+      font-weight: bold; // Bold text
+      border: none; // No border
+      cursor: pointer; // Pointer cursor
+      transition: transform 0.3s ease, box-shadow 0.3s ease; // Smooth transitions
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); // Shadow for depth
+
+      &:hover {
+        transform: translateY(-3px); // Slight upward movement on hover
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); // Darker shadow on hover
+      }
+
+      &:active {
+        transform: translateY(1px); // Downward movement on click
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); // Reset shadow on click
+      }
+    }
+
+    .menuIcon {
+      display: none; // Hidden by default
+      z-index: 999; // High z-index
+
+      img {
+        width: 36px; // Menu icon width
+        height: 36px; // Menu icon height
+        cursor: pointer; // Pointer cursor
+      }
+
+      @include sm {
+        display: inline; // Show on small screens
+      }
+    }
+
+    .menu {
+      position: absolute; // Absolute positioning for dropdown
+      top: 0; // Top alignment
+      right: -50%; // Hidden by default
+      background-color: black; // Black background
+      color: white; // White text color
+      height: 100vh; // Full viewport height
+      width: 50%; // Width for the dropdown
+      transition: all 1s ease; // Smooth transition
+
+      display: flex; // Flexbox layout
+      flex-direction: column; // Column layout
+      align-items: center; // Center items
+      justify-content: center; // Center items
+
+      font-size: 24px; // Font size for menu items
+
+      &.active {
+        right: 0; // Show menu when active
+      }
+
+      @include sm {
+        a {
+          display: initial; // Show on small screens
+        }
+      }
+    }
+  }
+}
+
+
+body.dark-mode {
+  background-color: #121212; // Dark background color
+  color: #ffffff; // Light text color
+}
+
+.navbar.dark {
+  background-color: #333; // Navbar dark background
+  color: #fff;
+
+  .left a,
+  .right a {
+    color: #fff;
+  }
+
+  .profileLink,
+  .logoutButton {
+    color: #fff;
+  }
+}
+
+.darkModeToggle {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
