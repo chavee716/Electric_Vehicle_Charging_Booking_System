@@ -10,28 +10,11 @@ import {
   Alert,
 } from "react-native";
 import axios from "axios";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RouteProp } from "@react-navigation/native";
+import { useRouter } from "expo-router";
 
-// Define the types for navigation
-type RootStackParamList = {
-  Login: undefined;
-  Register: undefined;
-};
-
-type RegisterScreenNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  "Register"
->;
-
-type RegisterScreenRouteProp = RouteProp<RootStackParamList, "Register">;
-
-type Props = {
-  navigation: RegisterScreenNavigationProp;
-  route: RegisterScreenRouteProp;
-};
-
-export default function Register({ navigation }: Props) {
+export default function Register() {
+  const router = useRouter();
+  
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -61,8 +44,8 @@ export default function Register({ navigation }: Props) {
     }
 
     try {
-      // Call the backend API
-      const response = await axios.post("http://192.168.8.153:8800/api/auth/register", {
+      // Call the backend API with updated IP address
+      const response = await axios.post("http://192.168.167.216:8800/api/auth/register", {
         username,
         email,
         password,
@@ -70,10 +53,10 @@ export default function Register({ navigation }: Props) {
 
       if (response.status === 201) {
         Alert.alert("Success", "User registered successfully");
-        navigation.navigate("Login");
+        router.push("/login");
       }
     } catch (err: any) {
-      setError(err.response?.data?.message );
+      setError(err.response?.data?.message || "An error occurred during registration");
     } finally {
       setIsLoading(false);
     }
@@ -130,8 +113,8 @@ export default function Register({ navigation }: Props) {
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
 
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.link}>Do you have an account?</Text>
+        <TouchableOpacity onPress={() => router.push("/login")}>
+          <Text style={styles.link}>Already have an account?</Text>
         </TouchableOpacity>
       </View>
 

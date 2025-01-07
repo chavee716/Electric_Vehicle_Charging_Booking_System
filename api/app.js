@@ -19,14 +19,15 @@ app.use(cors({
     origin: [
       "http://localhost:5173",   // Web app
       "http://localhost:8081",    // Mobile app
-      "http://192.168.8.153:8081", // Mobile app via Expo Go
-      "exp://192.168.8.153:8081"  // Expo Go specific protocol
+      "http://192.168.167.216:8081",  
+      "exp://192.168.167.216:8081" , // Expo Go app
+      
     ]
-  }));
+}));
   
   // Also update the listening configuration to accept connections from all network interfaces
   app.listen(8800, '0.0.0.0', () => {
-      console.log("Backend server is running on http://192.168.8.153:8800");
+      console.log("Backend server is running on http://192.168.167.216:8800");
   }); 
 app.use(express.json());
 app.use(cookieParser());

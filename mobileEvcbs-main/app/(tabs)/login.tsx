@@ -5,23 +5,24 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
-  Image,
   ActivityIndicator,
-  Alert,
 } from "react-native";
 import axios from "axios";
+import { useRouter } from "expo-router";
 
-export default function Login({ navigation }: { navigation: any }) {
+export default function Login({ setIsLoggedIn }) {
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
     setError("");
+    setSuccess("");
     setIsLoading(true);
 
-    // Validate input
     if (!username || !password) {
       setError("Please fill in all fields.");
       setIsLoading(false);
@@ -29,31 +30,28 @@ export default function Login({ navigation }: { navigation: any }) {
     }
 
     try {
-      // Make API call to backend login endpoint
       const response = await axios.post(
-        "http://192.168.8.153:8800/api/auth/login",
+        "http://192.168.167.216:8800/api/auth/login",
         { username, password },
         {
-          withCredentials: true, // Important for handling cookies
+          withCredentials: true,
           headers: { "Content-Type": "application/json" },
         }
       );
 
-      // If login is successful
       if (response.status === 200) {
         setError("");
-        Alert.alert("Login Successful", "Welcome back!");
-        // Uncomment when Home screen is ready
-        // navigation.navigate("Home");
+        setSuccess(`Successfully logged in as ${username}!`);
+        setIsLoggedIn(true);
+        setTimeout(() => {
+          router.push("/");
+        }, 2000);
       }
-    } catch (error: unknown) {
-      // Narrow down the type of error
+    } catch (error) {
       if (axios.isAxiosError(error)) {
-        // Axios-specific error
         setError(error.response?.data?.message || "Login failed.");
       } else {
-        // Non-Axios error
-        setError("An unexpected error occurred.");
+        setError("");
       }
     } finally {
       setIsLoading(false);
@@ -96,17 +94,11 @@ export default function Login({ navigation }: { navigation: any }) {
         </TouchableOpacity>
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
+        {success ? <Text style={styles.success}>{success}</Text> : null}
 
-        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+        <TouchableOpacity onPress={() => router.push("/register")}>
           <Text style={styles.link}>Don't have an account?</Text>
         </TouchableOpacity>
-      </View>
-
-      <View style={styles.imgContainer}>
-        <Image
-          source={require("../../public/login-bg.png")}
-          style={styles.image}
-        />
       </View>
     </View>
   );
@@ -160,18 +152,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 14,
   },
+  success: {
+    color: "#22c55e",
+    marginTop: 10,
+    fontSize: 14,
+    fontWeight: "500",
+  },
   link: {
     color: "#2563eb",
     marginTop: 15,
     fontSize: 14,
-  },
-  imgContainer: {
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  image: {
-    width: 280,
-    height: 180,
-    resizeMode: "contain",
   },
 });
