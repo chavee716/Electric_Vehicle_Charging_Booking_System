@@ -8,13 +8,14 @@ import {
   Image,
   ActivityIndicator,
   Alert,
+  Platform, // Ensure Platform is correctly imported
 } from "react-native";
 import axios from "axios";
 import { useRouter } from "expo-router";
 
 export default function Register() {
   const router = useRouter();
-  
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -36,7 +37,6 @@ export default function Register() {
 
     const { username, email, password } = formData;
 
-    // Validate inputs
     if (!username || !email || !password) {
       setError("All fields are required.");
       setIsLoading(false);
@@ -44,8 +44,15 @@ export default function Register() {
     }
 
     try {
-      // Call the backend API with updated IP address
-      const response = await axios.post("http://192.168.167.216:8800/api/auth/register", {
+      const API_BASE_URL = __DEV__
+        ? Platform.select({
+            android: "http://10.0.2.2:8800", // Android emulator
+            ios: "http://localhost:8800",    // iOS simulator
+            default: "http://192.168.235.216:8800", // Physical device
+          })
+        : "http://192.168.235.216:8800"; // Production URL
+
+      const response = await axios.post(`${API_BASE_URL}/api/auth/register`, {
         username,
         email,
         password,
@@ -117,13 +124,6 @@ export default function Register() {
           <Text style={styles.link}>Already have an account?</Text>
         </TouchableOpacity>
       </View>
-
-      <View style={styles.imgContainer}>
-        <Image
-          source={require("../../public/bg.png")}
-          style={styles.backgroundImage}
-        />
-      </View>
     </View>
   );
 }
@@ -187,14 +187,5 @@ const styles = StyleSheet.create({
     color: "#2563eb",
     marginTop: 15,
     fontSize: 14,
-  },
-  imgContainer: {
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  backgroundImage: {
-    width: 300,
-    height: 200,
-    resizeMode: "contain",
   },
 });

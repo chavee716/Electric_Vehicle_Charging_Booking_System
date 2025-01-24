@@ -1,0 +1,188 @@
+.addStationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f0f8f4; /* Soft light green background */
+  }
+  
+  .stationListContainer {
+    width: 350px;
+    padding: 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.05); /* Light shadow for smooth depth */
+    overflow-y: auto;
+    border-radius: 20px;
+    border: none;
+    transition: all 0.3s ease;
+    max-height: 90vh; /* Keeps it within the viewport */
+  }
+  
+  .stationListContainer:hover {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1); /* Slightly enhanced hover shadow */
+  }
+  
+  .stationListTitle {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #4caf50; /* Bright green for the title */
+    text-align: center;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  .stationList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .stationCard {
+    padding: 1.2rem;
+    background: linear-gradient(135deg, #a8e6cf, #81c784); /* Light green gradient */
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .stationCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #81c784, #66bb6a); /* Slightly darker gradient on hover */
+  }
+  
+  .stationCard h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #388e3c; /* Darker green for header contrast */
+    margin: 0;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid #66bb6a; /* Light green for separation */
+    font-family: 'Poppins', sans-serif;
+    text-transform: capitalize;
+  }
+  
+  .stationCard p {
+    font-size: 1.1rem;
+    color: #4f6367; /* Cool gray for readability */
+    margin: 0;
+    padding-top: 0.5rem;
+    line-height: 1.6;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .stationCard .stationInfo {
+    color: #34bfa3; /* Fresh mint green for additional info */
+    font-weight: bold;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .stationCard .stationAvailability {
+    color: #66bb6a; /* Lively green for availability */
+    font-size: 1.1rem;
+  }
+  
+  .stationCard .stationRating {
+    color: #388e3c; /* Strong green for ratings */
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+  
+  .stationCard .stationCardShadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3); /* Subtle white overlay for a more refined look */
+    transition: opacity 0.3s ease;
+  }
+  
+  .stationCard:hover .stationCardShadow {
+    opacity: 0;
+  }
+  
+  /* Scrollbar styling for a more modern appearance */
+  .stationListContainer::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .stationListContainer::-webkit-scrollbar-thumb {
+    background-color: #81c784; /* Light green scrollbar thumb */
+    border-radius: 10px;
+  }
+  
+  .stationListContainer::-webkit-scrollbar-track {
+    background-color: #e0f2f1; /* Light background for track */
+  }
+  
+  
+    .mapContainer {
+      flex-grow: 1;
+      position: relative;
+      height: 100%;
+      cursor: pointer;
+    }
+    
+    .formContainer {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 400px;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+      backdrop-filter: blur(8px);
+      border: 1px solid #e0e0e0;
+    }
+    
+    .inputField {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 0.8rem 0;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      background-color: #f9f9f9;
+      transition: all 0.3s ease;
+    }
+    
+    .inputField:focus {
+      outline: none;
+      border-color: #007bff;
+      background-color: #fff;
+    }
+    
+    .submitButton {
+      width: 100%;
+      padding: 1rem;
+      background-color: #28a745; /* Green background for submit button */
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .submitButton:hover {
+      background-color: #218838; /* Darker green shade on hover */
+    }
+    
+    .submitButton:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    

@@ -1,13 +1,15 @@
-import { View, Text, StyleSheet, Image, Platform } from 'react-native';
-import React from 'react';
+import React from "react";
+import { View, Text, StyleSheet, Image, Platform } from "react-native";
+import Swiper from "react-native-swiper";
 
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.homePage}>
+      {/* Text Section */}
       <View style={styles.textContainer}>
         <View style={styles.wrapper}>
           <View style={styles.logoContainer}>
-            <Image source={require("../../public/logo.png")} style={styles.logoImage} />
+            <Image source={require("../../assets/logo.png")} style={styles.logoImage} />
           </View>
           <Text style={styles.title}>Welcome to EV CONNECT</Text>
           <Text style={styles.description}>
@@ -16,8 +18,21 @@ export default function HomeScreen({ navigation }) {
           </Text>
         </View>
       </View>
+
+      {/* Slideshow Section */}
       <View style={styles.imgContainer}>
-        <Image source={require("../../public/bg.png")} style={styles.backgroundImage} />
+        <Swiper
+          style={styles.swiper}
+          showsPagination
+          autoplay
+          autoplayTimeout={3}
+          dotStyle={styles.dot}
+          activeDotStyle={styles.activeDot}
+        >
+          <Image source={require("../../assets/bg.png")} style={styles.slideImage} />
+          <Image source={require("../../assets/slide2.jpeg")} style={styles.slideImage} />
+          <Image source={require("../../assets/slide3.jpeg")} style={styles.slideImage} />
+        </Swiper>
       </View>
     </View>
   );
@@ -26,7 +41,7 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   homePage: {
     flex: 1,
-    backgroundColor: "#f5f6fa", // Light modern background
+    backgroundColor: "#ffffff", // Light blue background
     paddingVertical: 20,
     paddingHorizontal: 25,
   },
@@ -38,10 +53,12 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     paddingVertical: 30,
     shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 10,
-    elevation: 4,
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 15,
+    elevation: 6,
+    borderWidth: 2,
+    borderColor: "#3bc449", // Green border
   },
   wrapper: {
     alignItems: "center",
@@ -49,43 +66,64 @@ const styles = StyleSheet.create({
   logoContainer: {
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 10,
+    marginBottom: 15,
   },
   logoImage: {
-    width: 200,   // Increased width
-    height: 150,  // Increased height
+    width: 180,
+    height: 140,
     resizeMode: "contain",
-    borderRadius: 75,  // Keep rounded appearance with updated size
+    borderRadius: 70,
+    borderWidth: 2,
+    borderColor: "#1e3a8a", // Deep blue accent
   },
-  
   title: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: "700",
     textAlign: "center",
-    color: "#1e3a8a", // Modern muted blue
-    marginBottom: 10,
+    color: "#1e3a8a", // Deep blue text
+    marginBottom: 12,
+    textTransform: "uppercase",
   },
   description: {
-    fontSize: 17,
+    fontSize: 18,
     textAlign: "center",
-    color: "#4b5563", // Soft gray for readability
-    lineHeight: 24,
+    color: "#4b5563", // Muted gray text
+    lineHeight: 26,
     paddingHorizontal: 15,
   },
   imgContainer: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 20,
-  },
-  backgroundImage: {
-    width: "100%",
-    height: Platform.OS === "ios" ? 250 : 220, // Adjust background height based on platform
-    resizeMode: "cover",
-    borderRadius: 12,
+    marginTop: 25,
+    borderRadius: 15,
+    overflow: "hidden",
+    backgroundColor: "#ffffff",
+    borderWidth: 2,
+    borderColor: "#1e3a8a", // Deep blue border
     shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 3 },
-    shadowRadius: 10,
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 15,
+    elevation: 6,
+  },
+  swiper: {
+    height: "100%",
+  },
+  slideImage: {
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+    borderRadius: 15,
+  },
+  dot: {
+    backgroundColor: "#d1d5db", // Light gray dots
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+  },
+  activeDot: {
+    backgroundColor: "#3bc449", // Green active dot
+    width: 12,
+    height: 12,
+    borderRadius: 6,
   },
 });
