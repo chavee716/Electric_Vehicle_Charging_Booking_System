@@ -8,11 +8,11 @@ import axios from 'axios';
 // API configuration based on platform
 const API_BASE_URL = __DEV__
   ? Platform.select({
-      android: 'http://10.0.2.2:8800',      // Android emulator
+      android: 'http://192.168.246.216:8800',      // Android emulator
       ios: 'http://localhost:8800',         // iOS simulator
-      default: 'http://192.168.235.216:8800' // Physical device
+      default: 'http://192.168.246.216:8800' // Physical device
     })
-  : 'http://192.168.235.216:8800'; // Production URL
+  : 'http://192.168.246.216:8800'; // Production URL
 
 interface Station {
   id: string;

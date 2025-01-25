@@ -3,8 +3,10 @@ import jwt from "jsonwebtoken";
 export const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization;
   
+  // If no token, set user to null but continue
   if (!authHeader?.startsWith('Bearer ')) {
-    return res.status(401).json({ message: "Authorization header must start with Bearer" });
+    req.user = null;
+    return next();
   }
 
   const token = authHeader.split(" ")[1];
@@ -15,9 +17,9 @@ export const authMiddleware = (req, res, next) => {
     next();
   } catch (error) {
     console.error("Authentication error:", error);
-    if (error.name === 'TokenExpiredError') {
-      return res.status(401).json({ message: "Token expired" });
-    }
-    res.status(403).json({ message: "Invalid token" });
+    
+    // If token is invalid, set user to null but continue
+    req.user = null;
+    next();
   }
 };
