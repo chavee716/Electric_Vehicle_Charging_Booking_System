@@ -14,9 +14,9 @@ const prisma = new PrismaClient();
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:8081",
-  "http://192.168.246.216:8081",
-  "exp://192.168.246.216:8081",
-  "http://192.168.246.216:8800",
+  "http://192.168.63.216:8081",
+  "exp://192.168.63.216:8081",
+  "http://192.168.63.216:8800",
   
   "http://10.0.2.2:8800",
 ];

@@ -33,11 +33,11 @@ export default function Login({ setIsLoggedIn }) {
     try {
       const API_BASE_URL = __DEV__
         ? Platform.select({
-            android: "http://192.168.246.216:8800", // Android emulator
+            android: "http://192.168.63.216:8800", // Android emulator
             ios: "http://localhost:8800",    // iOS simulator
-            default: "http://192.168.246.216:8800", // Physical device
+            default: "http://192.168.63.216:8800", // Physical device
           })
-        : "http://192.168.235.216:8800"; // Production URL
+        : "http://192.168.63.216:8800"; // Production URL
 
       const response = await axios.post(
         `${API_BASE_URL}/api/auth/login`,

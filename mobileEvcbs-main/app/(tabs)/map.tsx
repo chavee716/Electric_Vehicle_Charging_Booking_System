@@ -1,6 +1,5 @@
-// app/map.tsx
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Platform, Image } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
 import axios from 'axios';
@@ -8,11 +7,11 @@ import axios from 'axios';
 // API configuration based on platform
 const API_BASE_URL = __DEV__
   ? Platform.select({
-      android: 'http://192.168.246.216:8800',      // Android emulator
+      android: 'http://192.168.63.216:8800',      // Android emulator
       ios: 'http://localhost:8800',         // iOS simulator
-      default: 'http://192.168.246.216:8800' // Physical device
+      default: 'http://192.168.63.216:8800' // Physical device
     })
-  : 'http://192.168.246.216:8800'; // Production URL
+  : 'http://192.168.63.216:8800'; // Production URL
 
 interface Station {
   id: string;
@@ -21,6 +20,7 @@ interface Station {
   latitude: number;
   longitude: number;
 }
+const chargingStationImage = require('../../assets/favicon.png');
 
 export default function MapScreen() {
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
@@ -66,18 +66,15 @@ export default function MapScreen() {
   useEffect(() => {
     (async () => {
       try {
-        // Request location permissions
         let { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
           setErrorMsg('Permission to access location was denied');
           return;
         }
 
-        // Get current location
         let currentLocation = await Location.getCurrentPositionAsync({});
         setLocation(currentLocation);
 
-        // Fetch stations
         await fetchStations();
       } catch (error: any) {
         console.error('Error initializing:', error?.message);
@@ -96,6 +93,13 @@ export default function MapScreen() {
   const handleMarkerPress = (station: Station) => {
     setSelectedStation(station);
   };
+
+  const CustomMarker = () => (
+    <Image 
+      source={chargingStationImage}
+      style={{ width: 40, height: 40 }} // Adjust size as needed
+    />
+  );
 
   if (isLoading) {
     return (
@@ -127,7 +131,7 @@ export default function MapScreen() {
           />
         )}
 
-        {/* Charging station markers */}
+        {/* Charging station markers with custom image */}
         {stations && stations.length > 0 && stations.map((station) => (
           <Marker
             key={station.id}
@@ -137,9 +141,10 @@ export default function MapScreen() {
             }}
             title={station.name}
             description={station.description}
-            pinColor="green"
             onPress={() => handleMarkerPress(station)}
-          />
+          >
+            <CustomMarker />
+          </Marker>
         ))}
       </MapView>
 
