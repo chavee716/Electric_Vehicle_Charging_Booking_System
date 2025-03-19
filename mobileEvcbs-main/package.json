@@ -15,7 +15,8 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@expo/vector-icons": "^14.0.2",
+    "@expo/vector-icons": "^14.0.4",
+    "@react-native-async-storage/async-storage": "^2.1.2",
     "@react-navigation/native": "^6.1.18",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.9",

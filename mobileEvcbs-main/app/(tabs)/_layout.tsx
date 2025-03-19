@@ -54,6 +54,16 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+  name="booking"
+  options={{
+    title: '',
+    tabBarLabel: '',
+    tabBarIcon: ({ color, focused }) => (
+      <TabBarIcon name={focused ? 'calendar' : 'calendar-outline'} color={color} />
+    ),
+  }}
+/>
+      <Tabs.Screen
   name="map"  // This should match the filename of your MapScreen (i.e., app/map.tsx)
   options={{
     title: '',
@@ -63,6 +73,7 @@ export default function TabLayout() {
     ),
   }}
 />
+
     </Tabs>
   );
 }
@@ -78,7 +89,7 @@ const styles = StyleSheet.create({
   tabBar: {
     backgroundColor: '#000000', // Dark background for the tab bar
     position: 'absolute',
-    bottom: 40, // Lift the tab bar from the bottom corner
+    bottom: 90, // Lift the tab bar from the bottom corner
     elevation: 5, // Slight elevation for shadow effect
     borderTopLeftRadius: 30, // Rounded corners on the top left
     borderTopRightRadius: 30, // Rounded corners on the top right
